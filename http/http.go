@@ -6,34 +6,32 @@ import (
 	"github.com/nametake/go-example-myapp"
 )
 
-func Handle(pattern string, handler http.Handler) {
-	http.Handle(pattern, handler)
+func HandlerFunc(pattern string, handler http.HandlerFunc) {
+	http.HandleFunc(pattern, handler)
 }
 
 func ListenAndServe(addr string, handler http.Handler) error {
 	return http.ListenAndServe(addr, handler)
 }
 
-type UserHandler struct {
+type Handler struct {
 	UserService myapp.UserService
 }
 
-func (h *UserHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	return
+func (h *Handler) CreateUser() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+	}
 }
 
-type UsersHandler struct {
-	UserService myapp.UserService
+func (h *Handler) Users() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+
+	}
 }
 
-func (h *UsersHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	return
-}
+func (h *Handler) User() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
 
-type CreateUserHandler struct {
-	UserService myapp.UserService
-}
-
-func (h *CreateUserHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	return
+	}
 }
