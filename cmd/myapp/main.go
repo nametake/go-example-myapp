@@ -8,9 +8,7 @@ import (
 func main() {
 	service := &mysql.UserService{}
 
-	handler := &http.UsersHandler{
-		UserService: service,
-	}
-	http.Handle("/", handler)
+	handler := http.Handler{}
+
 	http.ListenAndServe(":8080", nil)
 }
